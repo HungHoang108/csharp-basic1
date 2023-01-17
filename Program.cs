@@ -20,11 +20,68 @@ namespace CSharpFundamental
         }
         static string toTitleCase(string input)
         {
-            /* Write your code here */
+            var titleCaseString = "";
+            string[] newArray = input.Split(" ");
+            foreach (string i in newArray)
+            {
+                titleCaseString += char.ToUpper(i[0]) + i.Substring(1) + " ";
+            }
+            return titleCaseString.Trim();
         }
+
         static int[,] matrixMultiply(int[,] array1, int[,] array2)
         {
-            /* Write your code here */
+            int m = 2, n = 4, p = 4, q = 4, i, j;
+
+            // Console.WriteLine("Matrix 1:");
+            // for (i = 0; i < m; i++)
+            // {
+            //     for (j = 0; j < n; j++)
+            //     {
+            //         Console.Write(array1[i, j] + " ");
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            // Console.WriteLine("Matrix b:");
+            // for (i = 0; i < p; i++)
+            // {
+            //     for (j = 0; j < q; j++)
+            //     {
+            //         Console.Write(array2[i, j] + " ");
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            if (n != p)
+            {
+                throw new Exception("Error");
+            }
+            else
+            {
+                int[,] c = new int[m, q];
+                for (i = 0; i < m; i++)
+                {
+                    for (j = 0; j < q; j++)
+                    {
+                        c[i, j] = 0;
+                        for (int k = 0; k < n; k++)
+                        {
+                            c[i, j] += array1[i, k] * array2[k, j];
+                        }
+                    }
+                }
+                Console.WriteLine("The product of the two matrices is :");
+                for (i = 0; i < m; i++)
+                {
+                    for (j = 0; j < n; j++)
+                    {
+                        return (c[i, j]);
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
+
     }
 }
