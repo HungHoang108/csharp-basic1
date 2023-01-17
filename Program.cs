@@ -31,55 +31,32 @@ namespace CSharpFundamental
 
         static int[,] matrixMultiply(int[,] array1, int[,] array2)
         {
-            int m = 2, n = 4, p = 4, q = 4, i, j;
+            int m = array1.GetLength(0), n = array1.GetLength(1), p = array2.GetLength(0), q = array2.GetLength(1), i, j;
 
-            // Console.WriteLine("Matrix 1:");
-            // for (i = 0; i < m; i++)
-            // {
-            //     for (j = 0; j < n; j++)
-            //     {
-            //         Console.Write(array1[i, j] + " ");
-            //     }
-            //     Console.WriteLine();
-            // }
-
-            // Console.WriteLine("Matrix b:");
-            // for (i = 0; i < p; i++)
-            // {
-            //     for (j = 0; j < q; j++)
-            //     {
-            //         Console.Write(array2[i, j] + " ");
-            //     }
-            //     Console.WriteLine();
-            // }
-
-            if (n != p)
+            if (n != p) //to multiply the matrics the number of column in array1 should be equal to number of rows in array2
             {
                 throw new Exception("Error");
             }
             else
             {
-                int[,] c = new int[m, q];
-                for (i = 0; i < m; i++)
+                int[,] finalResult = new int[m, q]; // the result is displayed in 2 rows, 2 columns
+                for (i = 0; i < m; i++) // loop 2 times for array1[0] and array1[1]
                 {
-                    for (j = 0; j < q; j++)
+                    for (j = 0; j < q; j++) // loop 2 times to find result of array1[0] with array2's first colum, then array1[1] vs
+                    //array2's second column. And same process with array1[1]
                     {
-                        c[i, j] = 0;
+                        var c = 0;
                         for (int k = 0; k < n; k++)
                         {
-                            c[i, j] += array1[i, k] * array2[k, j];
+                            c += array1[i, k] * array2[k, j];
+
                         }
+                        finalResult[i, j] = c;
+                        System.Console.WriteLine($"c value ---- {c}");
                     }
                 }
-                Console.WriteLine("The product of the two matrices is :");
-                for (i = 0; i < m; i++)
-                {
-                    for (j = 0; j < n; j++)
-                    {
-                        return (c[i, j]);
-                    }
-                    Console.WriteLine();
-                }
+                return finalResult;
+
             }
         }
 
