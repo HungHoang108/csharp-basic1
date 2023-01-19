@@ -24,7 +24,7 @@ namespace CSharpFundamental
             string[] newArray = input.Split(" ");
             foreach (string i in newArray)
             {
-                titleCaseString += char.ToUpper(i[0]) + i.Substring(1) + " ";
+                titleCaseString += (char)(i[0] - 32) + i.Substring(1) + " ";
             }
             return titleCaseString.Trim();
         }
